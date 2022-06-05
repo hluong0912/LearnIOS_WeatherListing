@@ -10,10 +10,34 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    func setNavigationBarColor(){
+        //https://flatuicolors.com/palette/defo
+        //these below
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        
+        //set the title and large title to white color for ios 15
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().standardAppearance = appearance;
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
+        //cannot use this method anymore because read this article https://developer.apple.com/forums/thread/682420
+        //UINavigationBar.appearance().barTintColor = UIColor(displayP3Red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        setNavigationBarColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        
+        
+        
+        
+        
         return true
     }
 
