@@ -17,13 +17,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ipW-1Y-N6I">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="100" id="ipW-1Y-N6I" customClass="WeatherCell" customModule="WeatherListing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ipW-1Y-N6I" id="TOz-2W-lgc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugt-xl-2DU">
+                                            <rect key="frame" x="318" y="30" width="76" height="39"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI4-Hs-msU">
+                                            <rect key="frame" x="20" y="36" width="52" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xI4-Hs-msU" firstAttribute="leading" secondItem="TOz-2W-lgc" secondAttribute="leading" constant="20" symbolic="YES" id="2Rf-2x-fAx"/>
+                                        <constraint firstItem="xI4-Hs-msU" firstAttribute="top" secondItem="TOz-2W-lgc" secondAttribute="top" constant="36" id="8k6-Mh-gJS"/>
+                                        <constraint firstAttribute="trailing" secondItem="ugt-xl-2DU" secondAttribute="trailing" constant="20" symbolic="YES" id="f2Y-ut-g3K"/>
+                                        <constraint firstItem="ugt-xl-2DU" firstAttribute="top" secondItem="TOz-2W-lgc" secondAttribute="top" constant="30" id="gql-Cm-eNv"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cityNameLabel" destination="xI4-Hs-msU" id="uka-Ya-8Jq"/>
+                                    <outlet property="temperatureLabel" destination="ugt-xl-2DU" id="0Xv-wj-vCE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -51,14 +75,50 @@
                     <view key="view" contentMode="scaleToFill" id="6T2-wr-oRn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Place some keywords" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKx-w7-uik">
+                                <rect key="frame" x="20" y="91" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7v-Tj-gM3">
+                                <rect key="frame" x="179" y="157" width="56" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="kSd-kQ-aC1"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveCityButtonPressed" destination="58D-MC-vqT" eventType="touchUpInside" id="e1l-Rp-NUh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ZE3-a2-8sr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hKx-w7-uik" firstAttribute="centerX" secondItem="ZE3-a2-8sr" secondAttribute="centerX" id="1C2-Mo-fpr"/>
+                            <constraint firstItem="hKx-w7-uik" firstAttribute="leading" secondItem="6T2-wr-oRn" secondAttribute="leadingMargin" id="CdW-5U-MhN"/>
+                            <constraint firstItem="hKx-w7-uik" firstAttribute="trailing" secondItem="6T2-wr-oRn" secondAttribute="trailingMargin" id="P2B-mG-RE5"/>
+                            <constraint firstItem="V7v-Tj-gM3" firstAttribute="leading" secondItem="ZE3-a2-8sr" secondAttribute="leading" constant="179" id="bjY-fd-x9o"/>
+                            <constraint firstItem="hKx-w7-uik" firstAttribute="top" secondItem="ZE3-a2-8sr" secondAttribute="top" constant="35" id="rKz-FP-McT"/>
+                            <constraint firstItem="V7v-Tj-gM3" firstAttribute="top" secondItem="hKx-w7-uik" secondAttribute="bottom" constant="32" id="s31-08-zDy"/>
+                            <constraint firstItem="hKx-w7-uik" firstAttribute="leading" secondItem="ZE3-a2-8sr" secondAttribute="leading" constant="20" id="tmn-eQ-QkF"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add City" id="PSM-OQ-VA2"/>
+                    <navigationItem key="navigationItem" title="Add City" id="PSM-OQ-VA2">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="q2m-6c-sat">
+                            <connections>
+                                <action selector="close" destination="58D-MC-vqT" id="0jC-jb-dBC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityNameTextField" destination="hKx-w7-uik" id="kCd-PY-VVa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGp-2P-Ul2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="39"/>
+            <point key="canvasLocation" x="2095.6521739130435" y="38.839285714285715"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NVx-1T-9p7">
@@ -100,6 +160,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
